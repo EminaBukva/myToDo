@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CreateListItem } from "./ListItem.jsx";
+import  ListItem  from "./ListItem.jsx";
 
 
  function Input ()
@@ -17,6 +17,15 @@ import { CreateListItem } from "./ListItem.jsx";
     });
     setText("");
   }
+
+   function deleteItem(id) {
+     console.log("delete Item" +id);
+    setItems(prevItems => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+   }
 
   function handleChange(e)
   {
@@ -38,7 +47,16 @@ import { CreateListItem } from "./ListItem.jsx";
           </button>
         <div>
         <ul>
-           {items.map(CreateListItem)}     
+           {items.map( (item,index) => {
+              return(<ListItem 
+                      value={item.value}
+                      key={index}
+                      id={index}
+                      strikethorugh={item.strikethorugh}
+                      onEminaClick={deleteItem}
+                      ></ListItem>);
+           }
+            )}     
         </ul>
       </div>
       

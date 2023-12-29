@@ -1,18 +1,21 @@
-function CreateListItem(item)
-{
- return(<ListItem 
- value={item.value}
- key={item.key}
- />);
-}
+import {useState} from "react";
+
 
 function ListItem (props)
 {
+  const [td, setTd] = useState("");
+      
    const value=props.value;
-  
     return(
-          <li>{value}</li>
+
+          <li 
+          onClick={
+            ()=> {
+          props.onEminaClick(props.id);
+            }
+            }
+          style={{textDecoration: td}}>{value}</li>
       );
 }
 export default ListItem;
-export {CreateListItem};
+
